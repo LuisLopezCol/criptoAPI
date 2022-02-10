@@ -1,4 +1,8 @@
-<div class="card-container mt-4">
+<title>
+    The Bitcoin Data Nalayst
+</title>
+
+<div id="main_container">
     <!-- <div class="card-container-child mx-4" *ngFor="let content of contentDB" (click)=" updateModal(content, true)"> -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -8,20 +12,31 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body p-0 py-3">
-                    <!-- <div *ngFor="let links of modalContent.solutions" class="col-5">
-                            <a mat-stroked-button routerLink="/{{modalContent.week}}/{{links}}"
-                                class="col-10 mx-4 py-1 my-1" data-bs-dismiss="modal">{{links}}</a>
-                        </div> -->
+                    <table class="col-5">
+                        <tr>
+                            <th>BITCOIN EXCHANGE RATE PER DAY</th>
+                        </tr>
+                        <tr>
+                            <th>DATE:</th>
+                            <th>EXCHANGE VALUE:</th>
+                        </tr>
+                        <tr *ngFor="let links of bitcoinHistoric">
+                            <td>{{links.data.date}}</td>
+                            <td>USD ${{links.data.amount}}</td>
+                        </tr>
+                        <h1 class="col-10 mx-4 py-1 my-1 fs-2" data-bs-dismiss="modal"></h1>
+                    </table>
                 </div>
                 <label for="start">Start date:</label>
                 <input type="date" id="start" name="trip-start" value="{{todayDate}}" min="2018-01-01" max="2018-12-31">
                 <label for="start">End date:</label>
-                <input type="date" id="start" name="trip-start" value="{{endDate}}" min="2018-01-01" max="2018-12-31">
+                <input type="date" id="start" name="trip-start" value="{{firstDay}}" min="2018-01-01" max="2018-12-31">
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"
-                        (click)="getPrevious()">Close</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"
                         (click)="getCurrent()">current</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">create
+                        dates</button>
                 </div>
             </div>
         </div>

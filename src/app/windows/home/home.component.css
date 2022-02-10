@@ -1,0 +1,27 @@
+#main_container {
+    width: 500px;
+    padding: 30px;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 2px solid #465362;
+}
+
+table {
+    color: #011936;
+    width: 100%;
+}
+
+th {
+    width: 50%;
+    height: 40px;
+    font-size: 20px;
+    background-color: #C2EABD;
+}
+
+td {
+    width: 50%;
+    height: 30px;
+    text-align: center;
+}
