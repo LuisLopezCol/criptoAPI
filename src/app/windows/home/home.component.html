@@ -1,55 +1,64 @@
-<div class="header">
-    <h1 class="herder__title">
-        The Bitcoin Data Anlayst
-    </h1>
-</div>
-<div id="main_container">
-    <div class="present">
-        <h2 class="present__title  center">Current Bitcoin Exchange Rate</h2>
-        <h2 class="present__value" *ngIf="bitcoinCurrent">
-            USD$ {{bitcoinCurrent}}
-        </h2>
-        <table class="present__table">
-            <tr>
-                <th>Last Update:</th>
-                <th>To be updated in:</th>
-            </tr>
-            <tr>
-                <td>{{todayDate}</td>
-                <td>30s</td>
-            </tr>
-        </table>
+<section id="main_container" style="max-width: 500px !important; overflow: inherit;">
+    <div class="header">
+        <h1 class="header__title">
+            <img class="header__img" src="../../../assets/bitcoin-icon.png" alt="">
+            <div>&nbsp; The Bitcoin Data Anlayst &nbsp;</div>
+            <img class="header__img" src="../../../assets/bitcoin-icon.png" alt="">
+        </h1>
     </div>
-    <!-- <div class="card-container-child mx-4" *ngFor="let content of contentDB" (click)=" updateModal(content, true)"> -->
-    <div class="historic">
-        <table class="historic__table">
-            <tr>
-                <th colspan="3">BITCOIN EXCHANGE RATE PER DAY</th>
-            </tr>
-            <tr>
-                <th>DATE:</th>
-                <th>EXCHANGE VALUE (USD):</th>
-                <th>Other Currencies</th>
-
-            </tr>
-            <tr *ngFor="let links of bitcoinHistoric">
-                <td>{{links.data.date}}</td>
-                <td> ${{links.data.amount}}</td>
-                <td>Click here.</td>
-            </tr>
-        </table>
-        <label for="start">Start date:</label>
-        <input type="date" id="start" name="trip-start" value="{{todayDate}}" min="2018-01-01" max="2018-12-31">
-        <label for="start">End date:</label>
-        <input type="date" id="start" name="trip-start" value="{{firstDay}}" min="2018-01-01" max="2018-12-31">
-        <div class="modal-footer">
-            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+    <div id="data">
+        <div class="present">
+            <h2 class="present__title  center">Current Bitcoin Exchange Rate</h2>
+            <h2 class="present__value" *ngIf="bitcoinCurrent">
+                USD$ {{bitcoinCurrent}}
+            </h2>
+            <table class="present__table">
+                <tr>
+                    <th>Last Update:</th>
+                    <th>To be updated in:</th>
+                </tr>
+                <tr>
+                    <td>{{fetchedTime}}</td>
+                    <td>
+                        <countdown #cd [config]="{ leftTime: 60, format: 'mm:ss' }"></countdown>s
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <button #restart (click)="cd.restart()" style="display: none;">test</button>
+        <!---------------- Historic Data  ---------------->
+        <div class="line"></div>
+        <div class="historic">
+            <h2 class="historic__title center">BITCOIN EXCHANGE RATE PER DAY</h2>
+            <div class="historic__search">
+                <div class="historic__search__from">
+                    <label for="start">Start date:</label>
+                    <input #startDay type="date" id="start" name="trip-start" value={{dateStart}} min="2018-01-01">
+                </div>
+                <div class="historic__search__to">
+                    <label for="start">End date:</label>
+                    <input #endDay type="date" id="start" name="trip-start" value="{{todayDate}}" min="2018-01-01">
+                </div>
+                <div class="historic__search__goto">
+                    <button type="button" (click)="saveDate(false, startDay.value, endDay.value)">Search Data</button>
+                </div>
+            </div>
+            <table class="historic__table">
+                <tr>
+                    <th>DATE:</th>
+                    <th colspan="1">EXCHANGE VALUE (USD):</th>
+                </tr>
+                <tr *ngFor="let links of bitcoinHistoric">
+                    <td>{{links.data.date}}</td>
+                    <td>$ {{links.data.amount}} | <a href="">More Info.</a></td>
+                </tr>
+            </table>
         </div>
     </div>
-</div>
-<div class="footer">
-    <h5 class="footer__title">
-        Developed by Luis López <br>
-        <a href="www.luislopezdev.com">www.luislopezdev.com</a>
-    </h5>
-</div>
+    <div class="footer">
+        <h5 class="footer__title">
+            Developed by Luis López <br>
+            <a href="www.luislopezdev.com">www.luislopezdev.com</a>
+        </h5>
+    </div>
+</section>

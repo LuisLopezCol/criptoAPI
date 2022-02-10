@@ -1,24 +1,35 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
-
 /*----------- Header -----------*/
-.herder__title {
+#header {
+    overflow: inherit;
+}
+
+.header__title {
+    overflow: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     margin: 0;
     padding: 40px;
     text-align: center;
     color: var(--mainYellow);
     background-color: #050505;
-    position: sticky;
+    /* position: sticky; */
 }
 
-/*----------- Header -----------*/
-#main_container {
+.header__img {
+    width: 60px;
+    height: auto;
+}
+
+/*----------- Main container -----------*/
+#data {
     width: 100%;
-    padding: 30px;
+    padding: 38.5px;
     margin: 0;
     color: var(--mainBlack);
     background-color: var(--mainWhite);
-    font-family: 'Oswald', sans-serif;
+    border: 1px solid var(--mainBlack);
 }
 
 /*----------- present Value -----------*/
@@ -33,6 +44,10 @@
     background-color: var(--mainYellow);
     border-bottom: var(--mainBorder);
     margin-top: 0;
+}
+
+.present__value {
+    height: 40px !important;
 }
 
 .present__table table, th, td {
@@ -51,6 +66,13 @@
 }
 
 /*----------- Previous Values -----------*/
+.historic__title {
+    height: var(--mainTitleHeight);
+    background-color: var(--mainYellow);
+    border: var(--mainBorder);
+    margin: 0;
+}
+
 .historic__table {
     width: 100%;
 }
@@ -73,15 +95,54 @@
 }
 
 .historic__table td {
-    width: 50%;
+    width: fit-content;
     height: 30px;
     text-align: center;
+}
+
+.historic__search {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.historic__search__from, .historic__search__to {
+    width: 45%;
+    padding: 10px;
+    height: 60px;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
+
+.historic__search__from input, .historic__search__to input {
+    width: 100%;
+}
+
+.historic__search__goto {
+    font-size: 15px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.historic__search__goto button {
+    width: 200px;
+    height: 40px;
+    background-color: var(--mainYellow);
+    border-radius: 5px;
 }
 
 /*----------- Footer -----------*/
 
 .footer__title {
-    width: 100vw;
+    width: 100%;
     margin: 0;
     padding: 10px;
     text-align: center;

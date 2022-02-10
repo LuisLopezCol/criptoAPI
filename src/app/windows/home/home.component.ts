@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CoinbaseService } from 'src/app/services/coinbase.service';
 import {  Router } from '@angular/router';
+import { DetailComponent} from '../detail/detail.component';
 // import Swal from 'sweetalert2';
 
 @Component({
@@ -10,15 +11,38 @@ import {  Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
   constructor(public coinbaseService: CoinbaseService, public router: Router) { }
-  ngOnInit(): void {
-    // this.getDate();
-    this.saveDate(this.firstDay, this.todayDate);
-    this.changeDateFormat(this.todayDate)
-      // this.dailyValue = JSON.parse(localStorage.getItem("dates")!);
-      // console.log(this.dailyValue);
-      this.getCurrent();
+    //  @ViewChild("startDay") startDay!: ElementRef;
 
+     
+    ngOnInit(): void {
+      this.getCurrent();
+      this.saveDate(true, this.firstDay, this.firstDay);
+      
+      this.changeDateFormat(this.todayDate);
+      console.log("this is today", this.dateStart);
+      //  let startDay = this.startDay.nativeElement;
+      //  startDay.value = this.dateStart;
   }
+  
+  //----------- Get cuurent Bitcoin Value
+  fetchedTime  = new Date();
+  @ViewChild("restart") restart!: ElementRef;
+  getCurrent(){
+    this.coinbaseService.getCurrent().subscribe((res) => {  
+      this.bitcoinCurrent = res.data.amount;
+      console.log(this.bitcoinCurrent);
+      this.fetchedTime.getDate;
+      setTimeout(() => {
+        this.getCurrent();
+        let restart = this.restart.nativeElement;
+        restart.click();
+      }, 60500);
+    }, error =>{
+      console.log(error);
+    })
+  }
+
+  //----------- Get Historic Bitcoin Values
   bitcoinCurrent: any;
   bitcoinHistoric: any = []; //Final array with all objects fetched from API
   //Find current date
@@ -34,16 +58,27 @@ export class HomeComponent implements OnInit {
     return this.test = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
   }
 
-  // getDates() {
-  //   this.firstDay.setDate(this.todayDate.getDate() - 15);
-  //   this.dateStart = this.changeDateFormat(this.firstDay);
-  //   this.dateEnd = this.changeDateFormat(this.lastDay);
-  // }
-  //Store the data in the LS in order to have it available when the network crashes
-  saveDate(start: any, end: any) {
+  saveDate(newQuery: boolean, start: any, end: any) {
+    let totalDays: number; //Loop
+    
+    if (newQuery) {
+      totalDays = 15
+    } else {
+      let splitStart: any = start.split('-');
+      let splitEnd: any = end.split('-');
+      let  startArray = new Date(splitStart[0], splitStart[1]-1, splitStart[2]);
+      let  endArray  = new Date(splitEnd[0], splitEnd[1]-1, splitEnd[2]);
+      totalDays = Math.round((endArray.getTime() - startArray.getTime())/(1000*3600*24));
+      start = new Date(start);
+      end = new Date(end);
+          console.log(start);
+    console.log("this is my test",end);
+
+    }
+
     let historicData: any = {};                                                           //Storing the historic data
     localStorage.removeItem("historic");                                                  //Clean the LS to fill it again only if we could connect to DB
-    for (let i = 0; i < 15; i++) { 
+    for (let i = 0; i < totalDays; i++) { 
       let indexDate = this.changeDateFormat(end);   
       this.coinbaseService.getPrevious(indexDate).subscribe((res) => {  
         historicData = res;   
@@ -62,24 +97,7 @@ export class HomeComponent implements OnInit {
         end.setDate(end.getDate() - 1 );                                                  //For each loop fetch data for previous date
     }
   };
-  viewLoadList: boolean = true;
-  getCurrent(){
-    this.coinbaseService.getCurrent().subscribe((res) => {  
-      this.bitcoinCurrent = res.data.amount;
-      console.log(this.bitcoinCurrent);
-      
-    }, error =>{
-      console.log(error);
-    })
-  }
-  // arrayOfValues: any = {};
-  //   getPrevious(date: any){
-  //   this.coinbaseService.getPrevious(date).subscribe((res) => {  
-  //     console.log(res);
-  //     this.arrayOfValues
-  //   }, error =>{
-  //     console.log(error);
-  //   })
-  // }
+
+
   
 }
