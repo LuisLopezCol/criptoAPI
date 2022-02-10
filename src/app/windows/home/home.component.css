@@ -1,27 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+/*----------- Header -----------*/
+.herder__title {
+    width: 100%;
+    margin: 0;
+    padding: 40px;
+    text-align: center;
+    color: var(--mainYellow);
+    background-color: #050505;
+    position: sticky;
+}
+
+/*----------- Header -----------*/
 #main_container {
-    width: 500px;
+    width: 100%;
     padding: 30px;
+    margin: 0;
+    color: var(--mainBlack);
+    background-color: var(--mainWhite);
+    font-family: 'Oswald', sans-serif;
 }
 
-table, th, td {
+/*----------- present Value -----------*/
+.present {
+    border: var(--mainBorder);
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.present__title {
+    height: var(--mainTitleHeight);
+    background-color: var(--mainYellow);
+    border-bottom: var(--mainBorder);
+    margin-top: 0;
+}
+
+.present__table table, th, td {
     border-collapse: collapse;
-    border: 2px solid #465362;
+    border: none;
 }
 
-table {
+.present__table {
+    width: 100%;
+}
+
+.present__table th, .present__table td {
+    width: 50%;
+    height: 30px;
+    text-align: center;
+}
+
+/*----------- Previous Values -----------*/
+.historic__table {
+    width: 100%;
+}
+
+.historic__table, .historic__table th, .historic__table tr, .historic__table td {
+    border-collapse: collapse;
+    border: var(--mainBorder);
+}
+
+.historic__table table {
     color: #011936;
     width: 100%;
 }
 
-th {
+.historic__table th {
     width: 50%;
-    height: 40px;
+    height: var(--mainTitleHeight);
     font-size: 20px;
-    background-color: #C2EABD;
+    background-color: var(--mainYellow);
 }
 
-td {
+.historic__table td {
     width: 50%;
     height: 30px;
     text-align: center;
+}
+
+/*----------- Footer -----------*/
+
+.footer__title {
+    width: 100vw;
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+    color: var(--mainBlack);
+    /* background-color: #050505; */
 }

@@ -16,10 +16,10 @@ export class HomeComponent implements OnInit {
     this.changeDateFormat(this.todayDate)
       // this.dailyValue = JSON.parse(localStorage.getItem("dates")!);
       // console.log(this.dailyValue);
-      
+      this.getCurrent();
 
   }
-  bitcoinCurrent = [];
+  bitcoinCurrent: any;
   bitcoinHistoric: any = []; //Final array with all objects fetched from API
   //Find current date
   // todate: any = new Date();
@@ -34,11 +34,11 @@ export class HomeComponent implements OnInit {
     return this.test = date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
   }
 
-  getDates() {
-    this.firstDay.setDate(this.todayDate.getDate() - 15);
-    this.dateStart = this.changeDateFormat(this.firstDay);
-    this.dateEnd = this.changeDateFormat(this.lastDay);
-  }
+  // getDates() {
+  //   this.firstDay.setDate(this.todayDate.getDate() - 15);
+  //   this.dateStart = this.changeDateFormat(this.firstDay);
+  //   this.dateEnd = this.changeDateFormat(this.lastDay);
+  // }
   //Store the data in the LS in order to have it available when the network crashes
   saveDate(start: any, end: any) {
     let historicData: any = {};                                                           //Storing the historic data
@@ -63,10 +63,11 @@ export class HomeComponent implements OnInit {
     }
   };
   viewLoadList: boolean = true;
-  
   getCurrent(){
-      this.coinbaseService.getCurrent().subscribe((previousValue) => {  
-      console.log(previousValue);
+    this.coinbaseService.getCurrent().subscribe((res) => {  
+      this.bitcoinCurrent = res.data.amount;
+      console.log(this.bitcoinCurrent);
+      
     }, error =>{
       console.log(error);
     })

@@ -1,45 +1,55 @@
-<title>
-    The Bitcoin Data Nalayst
-</title>
-
+<div class="header">
+    <h1 class="herder__title">
+        The Bitcoin Data Anlayst
+    </h1>
+</div>
 <div id="main_container">
+    <div class="present">
+        <h2 class="present__title  center">Current Bitcoin Exchange Rate</h2>
+        <h2 class="present__value" *ngIf="bitcoinCurrent">
+            USD$ {{bitcoinCurrent}}
+        </h2>
+        <table class="present__table">
+            <tr>
+                <th>Last Update:</th>
+                <th>To be updated in:</th>
+            </tr>
+            <tr>
+                <td>{{todayDate}</td>
+                <td>30s</td>
+            </tr>
+        </table>
+    </div>
     <!-- <div class="card-container-child mx-4" *ngFor="let content of contentDB" (click)=" updateModal(content, true)"> -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title fw-bold">modalContent.title</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-0 py-3">
-                    <table class="col-5">
-                        <tr>
-                            <th>BITCOIN EXCHANGE RATE PER DAY</th>
-                        </tr>
-                        <tr>
-                            <th>DATE:</th>
-                            <th>EXCHANGE VALUE:</th>
-                        </tr>
-                        <tr *ngFor="let links of bitcoinHistoric">
-                            <td>{{links.data.date}}</td>
-                            <td>USD ${{links.data.amount}}</td>
-                        </tr>
-                        <h1 class="col-10 mx-4 py-1 my-1 fs-2" data-bs-dismiss="modal"></h1>
-                    </table>
-                </div>
-                <label for="start">Start date:</label>
-                <input type="date" id="start" name="trip-start" value="{{todayDate}}" min="2018-01-01" max="2018-12-31">
-                <label for="start">End date:</label>
-                <input type="date" id="start" name="trip-start" value="{{firstDay}}" min="2018-01-01" max="2018-12-31">
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal"
-                        (click)="getCurrent()">current</button>
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">create
-                        dates</button>
-                </div>
-            </div>
+    <div class="historic">
+        <table class="historic__table">
+            <tr>
+                <th colspan="3">BITCOIN EXCHANGE RATE PER DAY</th>
+            </tr>
+            <tr>
+                <th>DATE:</th>
+                <th>EXCHANGE VALUE (USD):</th>
+                <th>Other Currencies</th>
+
+            </tr>
+            <tr *ngFor="let links of bitcoinHistoric">
+                <td>{{links.data.date}}</td>
+                <td> ${{links.data.amount}}</td>
+                <td>Click here.</td>
+            </tr>
+        </table>
+        <label for="start">Start date:</label>
+        <input type="date" id="start" name="trip-start" value="{{todayDate}}" min="2018-01-01" max="2018-12-31">
+        <label for="start">End date:</label>
+        <input type="date" id="start" name="trip-start" value="{{firstDay}}" min="2018-01-01" max="2018-12-31">
+        <div class="modal-footer">
+            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
         </div>
     </div>
-    <!-- </div> -->
+</div>
+<div class="footer">
+    <h5 class="footer__title">
+        Developed by Luis López <br>
+        <a href="www.luislopezdev.com">www.luislopezdev.com</a>
+    </h5>
 </div>

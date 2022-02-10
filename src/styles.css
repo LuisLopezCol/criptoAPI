@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Oswald&display=swap');
+
+* {
+    font-family: 'Oswald', sans-serif;
+
+}
+
+:root {
+    --titleBackground: #C2EABD;
+    --mainRed: #FF5964;
+    --mainGreen: #6BF178;
+    --mainBlue: #35A7FF;
+    --mainYellow: #FFD700;
+    --mainWhite: #fff;
+    --mainBlack: #050505;
+    --mainTitleHeight: 50px;
+    --mainBorder: 1px solid #465362;
+}
+
+
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
