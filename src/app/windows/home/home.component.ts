@@ -48,9 +48,7 @@ export class HomeComponent implements OnInit {
         restart.click();                                                                   //Restart the counter
       }, 60500);
       console.log(error);
-    })
-    console.log(this.bitcoinCurrent);
-    
+    })    
   }
 
   //---------------------------- Get Historic Bitcoin Values
@@ -85,11 +83,12 @@ export class HomeComponent implements OnInit {
       }
       start = new Date(start);                                                              //Set the new values for the program as entered by the user
       end = new Date(end);
+      end.setDate(end.getDate() + 1)
     }
     // ------ Getting data from API and saving in LS
     let historicData: any = {};                                                             //Storing the historic data
     localStorage.removeItem("historic");                                                    //Clean the LS to fill it again only if we could connect to DB
-    for (let i = 0; i < totalDays; i++) { 
+    for (let i = 0; i <= totalDays; i++) { 
       let indexDate = this.changeDateFormat(end);   
       this.coinbaseService.getPrevious(indexDate).subscribe((res) => {  
         historicData = res;                                                             
@@ -118,37 +117,34 @@ export class HomeComponent implements OnInit {
       
   //---------------------------- Get Other Currencies
   @ViewChild('toastDetail') toastDetail!: ElementRef;                                       //Creating a toast to show the detail data
-  @ViewChild('backdrop') backdrop!: ElementRef;                                             //Backdrop used for the sake of UX when toast opens
   showToast () {
     const toastDetail = this.toastDetail.nativeElement;
-    const backdrop = this.backdrop.nativeElement;
     this.renderer2.addClass(toastDetail,"show-toast");
     this.renderer2.removeClass(toastDetail,"hide-toast");
-    this.renderer2.addClass(backdrop,"show-toast");
-  this.renderer2.removeClass(backdrop,"hide-toast");
   setTimeout(() => {
     this.hideToast();                                                                       //In 30 sec hide the toast | UX improvement
   }, 30000);
   }
   hideToast () {
     const toastDetail = this.toastDetail.nativeElement;
-    const backdrop = this.backdrop.nativeElement;
     this.renderer2.addClass(toastDetail,"hide-toast");
     this.renderer2.removeClass(toastDetail,"show-toast");
-    this.renderer2.addClass(backdrop,"hide-toast");
-    this.renderer2.removeClass(backdrop,"show-toast");
   }
 
-  ExchRateEUR: any;                                                                         //Storing each currency exchange rate for bitcoin
-  ExchRateCOP: any;
-  ExchRateUSD: any;
+  exchRateEUR: any;                                                                         //Storing each currency exchange rate for bitcoin
+  exchRateCOP: any;
+  exchRateUSD: any;
+  dateExchange: any;
   getTRM(date: any, USD: any){
     this.coinbaseService.getEUR(date).subscribe((res) => {  
-      this.ExchRateUSD = USD.toFixed(2);                                                    //USD keeps the same
-      this.ExchRateEUR = (this.ExchRateUSD/res.rates.USD).toFixed(2);                       //Rule of 3 t get EUR
-      this.ExchRateCOP = (this.ExchRateUSD/(res.rates.USD/res.rates.COP)).toFixed(2);       //Double Rule of 3 to get COP using BIT to USD and EUR to COP     
+      this.exchRateUSD = USD;                                                               //USD keeps the same
+      this.exchRateEUR = (this.exchRateUSD/res.rates.USD);                                  //Rule of 3 t get EUR
+      this.exchRateCOP = (this.exchRateUSD/(res.rates.USD/res.rates.COP));                  //Double Rule of 3 to get COP using BIT to USD and EUR to COP     
+      this.dateExchange = date;
+      console.log(date, USD);
+      
     }, error =>{
-       Swal.fire({
+      Swal.fire({
         icon: 'warning',
         title: 'Could not get data',
         text: 'The connection was not successful, please trying again or communicate with IT Team',

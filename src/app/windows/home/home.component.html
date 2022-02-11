@@ -1,12 +1,11 @@
 <!---------------------- Page Header  ---------------------->
-<div class="header">
+<div id="header">
     <h1 class="header__title">
         <img class="header__img" src="../../../assets/bitcoin-icon.png" alt="">
         <div>&nbsp; The Bitcoin Data Anlayst &nbsp;</div>
         <img class="header__img" src="../../../assets/bitcoin-icon.png" alt="">
     </h1>
 </div>
-
 <!---------------------- Page Main Content  ---------------------->
 <div id="main_content">
     <!-------------- Current Data  -------------->
@@ -29,7 +28,6 @@
         </table>
     </div>
     <button #restart (click)="cd.restart()" style="display: none;">test</button>
-
     <!-------------- Historic Data  -------------->
     <div class="line"></div>
     <div class="historic">
@@ -64,7 +62,6 @@
             </tr>
         </table>
         <!----- Toast  ----->
-        <div #backdrop class="backdrop hide-toast"></div>
         <div #toastDetail class="toast hide-toast">
             <div class="toast__header">
                 <img src="../../../assets/bitcoin-icon.png" width="30px">
@@ -81,21 +78,21 @@
                 </tr>
                 <tr>
                     <td>EUR Euro</td>
-                    <td>$ {{ExchRateEUR}}</td>
+                    <td>$ {{exchRateEUR}}</td>
                 </tr>
                 <tr>
                     <td>COP Colombian Peso</td>
-                    <td>$ {{ExchRateCOP}}</td>
+                    <td>$ {{exchRateCOP}}</td>
                 </tr>
                 <tr>
                     <td>USD US Dollar</td>
-                    <td>$ {{ExchRateUSD}}</td>
+                    <td>$ {{exchRateUSD}}</td>
                 </tr>
             </table>
+            <h3 class="toast__footer">Date: {{dateExchange}}</h3>
         </div>
     </div>
 </div>
-
 <!---------------------- Footer  ---------------------->
 <div class="footer">
     <h5 class="footer__title">

@@ -1,5 +1,12 @@
 /*----------- Header -----------*/
 
+#header {
+    position: absolute;
+    width: 100%;
+    position: sticky;
+    top: 0;
+}
+
 .header__title {
     overflow: inherit;
     display: flex;
@@ -145,24 +152,25 @@
 
 /* Toast */
 .show-toast {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
     transform: translateX(0px) !important;
 }
 
 .hide-toast {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
     transform: translateX(250vw) !important;
 }
 
 .toast {
-    position: absolute;
+    position: fixed;
     left: 45px;
-    top: 140px;
+    top: 280px;
     width: 400px;
-    height: 360px;
+    height: 270px;
     background-color: var(--mainWhite);
     color: #fff;
-    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 9px;
+    box-shadow: 20px 20px 20px 20px rgba(0, 0, 0, 0.2);
     border: var(--mainBorder);
     color: var(--mainBlack);
     z-index: 2;
@@ -208,6 +216,7 @@
     width: 80%;
     margin: 10%;
     margin-top: 30px;
+    margin-bottom: 10px;
 }
 
 .toast__table th {
@@ -222,16 +231,6 @@
     width: fit-content;
     text-align: center;
     font-size: 15px;
-}
-
-.backdrop {
-    z-index: 1;
-    background-color: #0505055e;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: auto;
 }
 
 .toast__header button {
@@ -255,10 +254,17 @@
     transform: scale(0.99) perspective(1px);
 }
 
+.toast__footer {
+    width: 100%;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
 /*----------- Footer -----------*/
 
 .footer__title {
-    width: 400px;
+    width: 397px;
     margin: 0;
     padding: 40px;
     text-align: center;
