@@ -1,7 +1,6 @@
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { CoinbaseService } from 'src/app/services/coinbase.service';
 import {  Router } from '@angular/router';
-import { DetailComponent} from '../detail/detail.component';
 // import Swal from 'sweetalert2';
 
 @Component({
