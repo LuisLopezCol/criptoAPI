@@ -1,6 +1,7 @@
 /*----------- Header -----------*/
-#header {
-    overflow: inherit;
+
+.header {
+    z-index: 4;
 }
 
 .header__title {
@@ -8,13 +9,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
+    width: 500px;
     margin: 0;
     padding: 40px;
     text-align: center;
     color: var(--mainYellow);
     background-color: #050505;
-    /* position: sticky; */
+    z-index: 4;
 }
 
 .header__img {
@@ -25,6 +26,7 @@
 /*----------- Main container -----------*/
 #data {
     width: 100%;
+    max-width: 500px;
     padding: 38.5px;
     margin: 0;
     color: var(--mainBlack);
@@ -32,7 +34,7 @@
     border: 1px solid var(--mainBlack);
 }
 
-/*----------- present Value -----------*/
+/*----------- Current Value -----------*/
 .present {
     border: var(--mainBorder);
     margin-bottom: 30px;
@@ -65,7 +67,7 @@
     text-align: center;
 }
 
-/*----------- Previous Values -----------*/
+/*----------- Historic Values -----------*/
 .historic__title {
     height: var(--mainTitleHeight);
     background-color: var(--mainYellow);
@@ -139,13 +141,124 @@
     border-radius: 5px;
 }
 
+/* Toast */
+.show-toast {
+    transition: all 0.3s ease-in-out;
+    transform: translateX(0px) !important;
+}
+
+.hide-toast {
+    transition: all 0.3s ease-in-out;
+    transform: translateX(-200%) !important;
+}
+
+.toast {
+    position: absolute;
+    left: 90px;
+    top: 200px;
+    width: 400px;
+    height: 360px;
+    background-color: var(--mainWhite);
+    color: #fff;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    border: var(--mainBorder);
+    color: var(--mainBlack);
+    z-index: 2;
+}
+
+.toast__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    height: 50px;
+    width: 340px;
+    margin: 0;
+    padding: 0;
+    padding-right: 30px;
+    background-color: var(--mainBlack);
+    color: var(--mainWhite);
+    font-size: 20px;
+}
+
+.toast__header:nth-child(1) {
+    padding-left: 30px;
+}
+
+.toast__header:nth-child(3) {
+    margin-right: 30px;
+}
+
+.toast__title {
+    height: var(--mainTitleHeight);
+    background-color: var(--mainYellow);
+    border-bottom: var(--mainBorder);
+    margin-top: 0;
+}
+
+.toast__table, .toast__table th, .toast__table tr, .toast__table td {
+    border-collapse: collapse;
+    border: var(--mainBorder);
+}
+
+.toast__table {
+    width: 80%;
+    margin: 10%;
+    margin-top: 30px;
+}
+
+.toast__table th {
+    width: 50%;
+    height: var(--mainTitleHeight);
+    font-size: 20px;
+    background-color: var(--mainYellow);
+}
+
+.toast__table td {
+    width: fit-content;
+    height: 40px;
+    text-align: center;
+}
+
+.backdrop {
+    z-index: 1;
+    background-color: #0505055e;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.toast__header button {
+    width: 80px !important;
+    height: 30px !important;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    background-color: var(--mainYellow);
+}
+
+.toast__header button:hover {
+    background-color: var(--mainWhite);
+    transition: all 0.2s ease-in-out;
+    transform: scale(1.02);
+    box-shadow: 0px 3px 15px rgba(0, 0, 0, 0.2);
+}
+
+.toast__header button:active {
+    transition: all 0.1s ease-in-out;
+    transform: scale(0.99) perspective(1px);
+}
+
 /*----------- Footer -----------*/
 
 .footer__title {
-    width: 100%;
+    width: 500px;
     margin: 0;
-    padding: 10px;
+    padding: 40px;
     text-align: center;
     color: var(--mainBlack);
-    /* background-color: #050505; */
+    border: var(--mainBorder);
 }
