@@ -7,14 +7,15 @@
     </h1>
 </div>
 
-<!---------------------- Current Data  ---------------------->
-<div id="data">
-    <div class="present">
-        <h2 class="present__title  center">Current Bitcoin Exchange Rate</h2>
-        <h2 class="present__value" *ngIf="bitcoinCurrent">
-            USD$ {{bitcoinCurrent}}
+<!---------------------- Page Main Content  ---------------------->
+<div id="main_content">
+    <!-------------- Current Data  -------------->
+    <div class="current">
+        <h2 class="current__title  center">Current Bitcoin Exchange Rate</h2>
+        <h2 class="current__value">
+            USD $ {{bitcoinCurrent}}
         </h2>
-        <table class="present__table">
+        <table class="current__table">
             <tr>
                 <th>Last Update:</th>
                 <th>To be updated in:</th>
@@ -29,25 +30,26 @@
     </div>
     <button #restart (click)="cd.restart()" style="display: none;">test</button>
 
-    <!---------------------- Historic Data  ---------------------->
+    <!-------------- Historic Data  -------------->
     <div class="line"></div>
     <div class="historic">
-        <!----- Headers  ----->
+        <!----- Header  ----->
         <h2 class="historic__title center">BITCOIN EXCHANGE RATE PER DAY</h2>
+        <!----- Search Dates Input  ----->
         <div class="historic__search">
             <div class="historic__search__from">
                 <label for="start">Start date:</label>
-                <input #startDay type="date" id="start" name="trip-start" value={{dateStart}} min="2018-01-01">
+                <input #startDay type="date" id="start" name="trip-start" value={{todayDate}} min="2018-01-01">
             </div>
             <div class="historic__search__to">
                 <label for="start">End date:</label>
                 <input #endDay type="date" id="start" name="trip-start" value="{{todayDate}}" min="2018-01-01">
             </div>
             <div class="historic__search__goto">
-                <button type="button" (click)="saveDate(false, startDay.value, endDay.value)">Search Data</button>
+                <button type="button" (click)="getPrevious(false, startDay.value, endDay.value)">Search Data</button>
             </div>
         </div>
-        <!----- Other Currencies  ----->
+        <!----- Historic Data Table  ----->
         <table class="historic__table">
             <tr>
                 <th>DATE:</th>
@@ -59,12 +61,9 @@
                         (click)="getTRM(links.data.date, links.data.amount)">More
                         Info.</span>
                 </td>
-                <!-- <td>$ {{links.data.amount}} | <a href="" (click)="openToast(links.data.date, links.data.amount)">More
-                        Info.</a></td> -->
             </tr>
         </table>
         <!----- Toast  ----->
-        <button (click)="showToast()">test</button>
         <div #backdrop class="backdrop hide-toast"></div>
         <div #toastDetail class="toast hide-toast">
             <div class="toast__header">
@@ -81,16 +80,16 @@
                     <th colspan="1">BITCOIN EXCHANGE:</th>
                 </tr>
                 <tr>
-                    <td>USD US Dollar</td>
-                    <td>{{ExchRateUSD}}</td>
-                </tr>
-                <tr>
                     <td>EUR Euro</td>
-                    <td>{{ExchRateEUR}}</td>
+                    <td>$ {{ExchRateEUR}}</td>
                 </tr>
                 <tr>
                     <td>COP Colombian Peso</td>
-                    <td>{{ExchRateCOP}}</td>
+                    <td>$ {{ExchRateCOP}}</td>
+                </tr>
+                <tr>
+                    <td>USD US Dollar</td>
+                    <td>$ {{ExchRateUSD}}</td>
                 </tr>
             </table>
         </div>

@@ -1,20 +1,16 @@
 /*----------- Header -----------*/
 
-.header {
-    z-index: 4;
-}
-
 .header__title {
     overflow: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 500px;
+    width: 440px;
     margin: 0;
-    padding: 40px;
+    padding: 20px;
     text-align: center;
     color: var(--mainYellow);
-    background-color: #050505;
+    background-color: var(--mainBlack);
     z-index: 4;
 }
 
@@ -24,9 +20,9 @@
 }
 
 /*----------- Main container -----------*/
-#data {
+#main_content {
     width: 100%;
-    max-width: 500px;
+    max-width: 400px;
     padding: 38.5px;
     margin: 0;
     color: var(--mainBlack);
@@ -35,35 +31,35 @@
 }
 
 /*----------- Current Value -----------*/
-.present {
+.current {
     border: var(--mainBorder);
     margin-bottom: 30px;
     text-align: center;
 }
 
-.present__title {
+.current__title {
     height: var(--mainTitleHeight);
     background-color: var(--mainYellow);
     border-bottom: var(--mainBorder);
     margin-top: 0;
 }
 
-.present__value {
+.current__value {
     height: 40px !important;
 }
 
-.present__table table, th, td {
+.current__table table, th, td {
     border-collapse: collapse;
     border: none;
 }
 
-.present__table {
+/* .current__table {
     width: 100%;
-}
+} */
 
-.present__table th, .present__table td {
+.current__table th, .current__table td {
     width: 50%;
-    height: 30px;
+    height: 12px;
     text-align: center;
 }
 
@@ -84,11 +80,6 @@
     border: var(--mainBorder);
 }
 
-.historic__table table {
-    color: #011936;
-    width: 100%;
-}
-
 .historic__table th {
     width: 50%;
     height: var(--mainTitleHeight);
@@ -98,8 +89,13 @@
 
 .historic__table td {
     width: fit-content;
-    height: 30px;
+    height: 27px;
     text-align: center;
+}
+
+.historic__table span:hover {
+    cursor: pointer;
+    color: var(--mainRed);
 }
 
 .historic__search {
@@ -107,7 +103,7 @@
     flex-wrap: wrap;
     width: 100%;
     margin-top: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .historic__search__from, .historic__search__to {
@@ -115,15 +111,13 @@
     padding: 10px;
     height: 60px;
     font-size: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    text-align: center;
     font-size: 15px;
 }
 
 .historic__search__from input, .historic__search__to input {
     width: 100%;
+    font-size: 15px;
 }
 
 .historic__search__goto {
@@ -135,10 +129,18 @@
 }
 
 .historic__search__goto button {
-    width: 200px;
-    height: 40px;
+    width: 150px;
+    height: 35px;
     background-color: var(--mainYellow);
     border-radius: 5px;
+}
+
+.historic__search__goto button:hover {
+    background-color: var(--mainBlack);
+    color: var(--mainYellow);
+    font-weight: 700;
+    transition: 0.2s ease-in-out;
+
 }
 
 /* Toast */
@@ -149,13 +151,13 @@
 
 .hide-toast {
     transition: all 0.3s ease-in-out;
-    transform: translateX(-200%) !important;
+    transform: translateX(250vw) !important;
 }
 
 .toast {
     position: absolute;
-    left: 90px;
-    top: 200px;
+    left: 45px;
+    top: 140px;
     width: 400px;
     height: 360px;
     background-color: var(--mainWhite);
@@ -211,14 +213,15 @@
 .toast__table th {
     width: 50%;
     height: var(--mainTitleHeight);
-    font-size: 20px;
     background-color: var(--mainYellow);
+    font-size: 18px;
 }
 
 .toast__table td {
-    width: fit-content;
     height: 40px;
+    width: fit-content;
     text-align: center;
+    font-size: 15px;
 }
 
 .backdrop {
@@ -228,7 +231,7 @@
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
+    height: auto;
 }
 
 .toast__header button {
@@ -255,7 +258,7 @@
 /*----------- Footer -----------*/
 
 .footer__title {
-    width: 500px;
+    width: 400px;
     margin: 0;
     padding: 40px;
     text-align: center;
