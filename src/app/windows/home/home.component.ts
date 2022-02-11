@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
         title: 'Input Error',
         text: 'The End Date must be greater than Start Date',
         timer: 3000
-      })                                                                 //If user enter the "start" > "end", stop the program and alert 
+      })                                                                                    //If user enter the "start" > "end", stop the program and alert 
         console.log("error, start > end");
       }
       start = new Date(start);                                                              //Set the new values for the program as entered by the user
@@ -141,8 +141,6 @@ export class HomeComponent implements OnInit {
       this.exchRateEUR = (this.exchRateUSD/res.rates.USD);                                  //Rule of 3 t get EUR
       this.exchRateCOP = (this.exchRateUSD/(res.rates.USD/res.rates.COP));                  //Double Rule of 3 to get COP using BIT to USD and EUR to COP     
       this.dateExchange = date;
-      console.log(date, USD);
-      
     }, error =>{
       Swal.fire({
         icon: 'warning',

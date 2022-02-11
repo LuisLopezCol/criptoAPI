@@ -4,10 +4,13 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Applications used for this projects
 
-EletronJS
-Developed in Visual Studio Code
+EletronJS.
+Developed in Visual Studio Code.
 
-## Testing
+## Third parties frameworks
+
+    * ngx-countdown: Simple fetaure to set a timer, I used this to improve the UX and .
+    * Sweetalert: To alert the user when the connection with the server is broken, Sweetalert is a simple solution and it's not strictly related to the core function of the app, it just a UX improvment.
 
 ## UX | UI Design
 
@@ -26,13 +29,11 @@ The appication has of three main features:
 
 Color palette for this project can be found here: https://coolors.co/ffe74c-ff5964-ffffff-6bf178-35a7ff
 
-## Third parties frameworks
+## Testing
 
-ngx-countdown: Simple fetaure to set a timer
-Sweetalert: To alert the user when the connection with the werve is broken
-
-Las librer as de terceros se deber an evitar en lo posible, nos gustar a ver tu propio c digo, sin embargo si decides incluir algunas, proporciona el razonamiento y la justificaci n de su uso en el archivo README
-• Las pruebas unitarias deben estar escritas de una forma pragm tica
+1. Current BTC exchange rate; for this test we will request manually and automatically the data to the API and compare if it works.
+   1.1 Test success, we could not get the exact value since the API is constatly being updated, however both values were very close.
+2. Exchange rate per day; we fetch manually information for three specific days, ["2022-2-10": $ 44416.39, "2022-2-1": $ 38492.53, "2022-1-27": $ 36846.22], then the data was requested via this application automatically (on init loading) and manually via the search input, for both the result was the same- success.
 
 ## Code scaffolding
 
